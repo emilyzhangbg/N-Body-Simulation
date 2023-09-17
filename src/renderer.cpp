@@ -27,7 +27,7 @@ bool Renderer::init()
 
 void Renderer::clearWindow()
 {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 200, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
 }
 

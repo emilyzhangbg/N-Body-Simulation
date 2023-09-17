@@ -11,7 +11,6 @@ public:
     void particlesInfo();
     void drawBodies() const;
     void moveBodies();
-    void calcNetForce();
 
 private:
     std::vector<Particle> particles;

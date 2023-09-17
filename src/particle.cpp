@@ -35,7 +35,7 @@ void Particle::draw() const
     rect.x = state.position.getX() - state.radius;
     rect.y = state.position.getY() - state.radius;
 
-    SDL_SetRenderDrawColor(renderer.getHandle(), 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer.getHandle(), 255, 255, 255, 255);
     SDL_RenderFillRect(renderer.getHandle(), &rect);
 }
 
@@ -82,9 +82,7 @@ void Particle::setNetForce(const Vector& force)
 void Particle::updateAcceleration()
 {
     double accelerationMagnitude = state.netForce.magnitude() / state.mass;
-    state.acceleration = Vector(state.netForce, accelerationMagnitude);
-    // std::cout << "current net force: (" << state.netForce.getX() << ", " << state.netForce.getY() << ")" << std::endl;
-    // std::cout << "current acceleration: (" << state.acceleration.getX() << ", " << state.acceleration.getY() << ")" << std::endl;
+    state.acceleration.setVector(Vector(state.netForce, accelerationMagnitude));
 }
 
 void Particle::updateDisplacement()
@@ -93,8 +91,6 @@ void Particle::updateDisplacement()
     double displacementY = state.velocity.getY() * dt + (1/2) * state.acceleration.getY() * std::pow(dt, 2); 
 
     state.curDisplacement.setVector(Vector{displacementX, displacementY});
-
-    // std::cout << "current displacement: (" << displacementX << ", " << displacementY << ")" << std::endl;
 }
 
 void Particle::updatePosition()
@@ -107,8 +103,7 @@ void Particle::updateVelocity()
     double velocityX = state.velocity.getX() + state.acceleration.getX() * dt; 
     double velocityY = state.velocity.getY() + state.acceleration.getY() * dt; 
 
-    state.velocity = Vector{velocityX, velocityY};
-    // std::cout << "current velocity: (" << velocityX << ", " << velocityY << ")" << std::endl;
+    state.velocity.setVector(Vector{velocityX, velocityY});
 }
 
 };

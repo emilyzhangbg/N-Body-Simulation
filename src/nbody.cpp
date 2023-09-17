@@ -4,20 +4,6 @@
 #include <time.h>
 #include <cmath>
 
-unsigned long mix(unsigned long a, unsigned long b, unsigned long c)
-{
-    a=a-b;  a=a-c;  a=a^(c >> 13);
-    b=b-c;  b=b-a;  b=b^(a << 8);
-    c=c-a;  c=c-b;  c=c^(b >> 13);
-    a=a-b;  a=a-c;  a=a^(c >> 12);
-    b=b-c;  b=b-a;  b=b^(a << 16);
-    c=c-a;  c=c-b;  c=c^(b >> 5);
-    a=a-b;  a=a-c;  a=a^(c >> 3);
-    b=b-c;  b=b-a;  b=b^(a << 10);
-    c=c-a;  c=c-b;  c=c^(b >> 15);
-    return c;
-}
-
 namespace nbody
 {
 Nbody::Nbody(const Renderer &renderer, double mass, int n, double radius)
@@ -26,16 +12,15 @@ Nbody::Nbody(const Renderer &renderer, double mass, int n, double radius)
     particles.reserve(n);
     unsigned long seed;
 
+    seed = time(0);
+    std::srand(seed);
+
     for (int i = 0; i < n; ++i)
     {
-        seed = mix(clock(), time(NULL), getpid());
-        std::srand(seed);
-
-        double x = std::rand() % 80000 / 100.0;
-        double y = std::rand() % 60000 / 100.0;
-        double degrees = std::rand() % 36000 / 100.0;
-        double speed = 0;
-
+        double x = std::rand() % 800 * 1.0;
+        double y = std::rand() % 600 * 1.0;
+        double degrees = std::rand() % 360 * 1.0;
+        double speed = 0.0001;
 
         Particle::State particleState {
             position: Vector{x, y},
@@ -43,11 +28,6 @@ Nbody::Nbody(const Renderer &renderer, double mass, int n, double radius)
             mass: mass,
             radius: radius,
         };
-
-        std::cout << "(" << x << ", " << y << ")" << std::endl;
-        std::cout << "degrees: " << degrees << std::endl;
-        std::cout << "speed " << speed << std::endl; 
-        std::cout << "-----" << std::endl; 
 
         particles.push_back(Particle{renderer, particleState});
     }
@@ -69,9 +49,14 @@ void Nbody::drawBodies() const
     }
 }
 
-void Nbody::calcNetForce()
+void Nbody::moveBodies()
 {
     const double G = 6.67430 * std::pow(10, -11);
+
+    for (int i = 0; i < numOfParticles; ++i)
+    {
+        particles[i].setNetForce(Vector{0,0});
+    }
 
     for (int particle_i = 0; particle_i < numOfParticles; ++particle_i)
     {
