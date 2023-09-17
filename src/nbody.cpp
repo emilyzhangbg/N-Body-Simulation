@@ -33,6 +33,10 @@ Nbody::Nbody(const Renderer &renderer, double mass, int n, double radius)
     }
 }
 
+Nbody::~Nbody()
+{
+}
+
 void Nbody::particlesInfo()
 {
     for (int i = 0; i < numOfParticles; ++i)

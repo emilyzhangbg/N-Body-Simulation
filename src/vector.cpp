@@ -17,6 +17,10 @@ Vector::Vector()
 {
 }
 
+Vector::~Vector()
+{
+}
+
 Vector::Vector(double x, double y, bool degreeMode)
 {
     if (degreeMode)

@@ -26,6 +26,10 @@ void Particle::particleInfo()
     std::cout << "-----" << std::endl;
 }
 
+Particle::~Particle()
+{
+}
+
 void Particle::draw() const
 {
     SDL_Rect rect;
