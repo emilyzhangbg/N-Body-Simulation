@@ -10,6 +10,8 @@ public:
     Nbody(const Renderer &renderer, double mass, int n, double radius);
     void particlesInfo();
     void drawBodies() const;
+    void moveBodies();
+    void calcNetForce();
 
 private:
     std::vector<Particle> particles;

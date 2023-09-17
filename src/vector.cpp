@@ -1,6 +1,6 @@
+#include "vector.h"
 #include <iostream>
 #include <cmath>
-#include "vector.h"
 
 double degToRad(double degree)
 {
@@ -28,6 +28,14 @@ Vector::Vector(double x, double y, bool degreeMode)
         this->x = x;
         this->y = y;
     }
+}
+
+Vector::Vector(const Vector& direction, double magnitude)
+{
+    double ratio = magnitude / direction.magnitude();
+
+    this->x = direction.x * ratio;
+    this->y = direction.y * ratio;
 }
 
 void Vector::speedToVec(double degree, double speed)
@@ -70,12 +78,12 @@ void Vector::speedToVec(double degree, double speed)
     this->y = y;
 } 
 
-double Vector::magnitude()
+double Vector::magnitude() const
 {
     return std::sqrt(std::pow(x, 2) + std::pow(y, 2));
 }
 
-void Vector::vectorInfo()
+void Vector::vectorInfo() const
 {
     std::cout << "(" << x << ", " << y << ")" << std::endl;
 }
@@ -88,6 +96,35 @@ double Vector::getX() const
 double Vector::getY() const
 {
     return y;
+}
+
+void Vector::setX(double x)
+{
+    std::cout << "setting x: " << x << std::endl;
+    this->x == x;
+}
+
+void Vector::setY(double y)
+{
+    this->y == y;
+}
+
+void Vector::vecSub(const Vector& other)
+{    
+    this->x -= other.x;
+    this->y -= other.y;
+}
+
+void Vector::vecAdd(const Vector& other)
+{    
+    this->x += other.x;
+    this->y += other.y;
+}
+
+void Vector::setVector(const Vector& vec)
+{
+    this->x = vec.x;
+    this->y = vec.y;
 }
 
 };
