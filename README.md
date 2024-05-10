@@ -1,5 +1,7 @@
 # N-Body-Simulation
 
+<img width="628" alt="image" src="https://github.com/emilyzhangbg/N-Body-Simulation/assets/57567096/456049dd-d296-4cb6-9383-ccaca525a267">
+
 ## Inspiration 
 Simulation inspired by the sci-fi novel "The Three-Bodied Problem" by Liu Cixin to visualize the chance of survival of a civilization on a planet surrounded by n suns. Only by predicting the trajectory of the sun will the "people" there know whether they will be faced with scorching heat, an ice age, or a period that their civilization can develop.
 
