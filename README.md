@@ -1,5 +1,7 @@
 # N-Body-Simulation
 
+Click [HERE](https://youtu.be/gvDh5sZkz1E) for a demo of the simulation.
+
 <img width="628" alt="image" src="https://github.com/emilyzhangbg/N-Body-Simulation/assets/57567096/456049dd-d296-4cb6-9383-ccaca525a267">
 
 ## Inspiration 
